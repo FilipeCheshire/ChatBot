@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import { TextField } from '@mui/material';
+import Botao from '../Botão';
 
 function MensagemNode({ onSave, onCancel }) {
   const [textoMensagem, setTextoMensagem] = useState('');
@@ -28,8 +29,8 @@ function MensagemNode({ onSave, onCancel }) {
         onChange={handleChangeTextoMensagem}
       />
       <div>
-        <Button onClick={onCancel} color="secondary">Cancelar</Button>
-        <Button onClick={handleSave} color="primary">Salvar</Button>
+      <Botao onClick={onCancel} color="gray" label='Cancelar'/>
+      <Botao onClick={handleSave} color="purple" label='Salvar' />
       </div>
     </>
   );

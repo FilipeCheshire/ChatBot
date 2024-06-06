@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import { TextField } from '@mui/material';
+import Botao from '../Botão';
 
 function EmailNode({ onSave, onCancel }) {
   const [destinatario, setDestinatario] = useState('');
@@ -50,8 +51,8 @@ function EmailNode({ onSave, onCancel }) {
         onChange={handleChangeMensagem}
       />
       <div>
-        <Button onClick={onCancel} color="secondary">Cancelar</Button>
-        <Button onClick={handleSave} color="primary">Salvar</Button>
+        <Botao onClick={onCancel} color="gray" label='Cancelar'/>
+        <Botao onClick={handleSave} color="purple" label='Salvar' />
       </div>
     </>
   );

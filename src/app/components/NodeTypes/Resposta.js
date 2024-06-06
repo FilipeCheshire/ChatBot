@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Checkbox, FormControl, InputLabel, Select, MenuItem, Button, FormControlLabel } from '@mui/material';
+import { TextField, Checkbox, FormControl, InputLabel, Select, MenuItem, FormControlLabel } from '@mui/material';
+import Botao from '../Botão';
 
 function Respostas({ onSave, onCancel }) {
     const [responses, setResponses] = useState([
@@ -25,22 +26,24 @@ function Respostas({ onSave, onCancel }) {
     };
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div>
             <div>
                 <FormControlLabel
                     control={<Checkbox />}
                     label="Salvar resposta como variável"
                 />
             </div>
-            <div style={{ backgroundColor: '#e0f7fa', padding: '10px', borderRadius: '5px', marginBottom: '10px' }}>
+            <div className="bg-cyan-100 p-2.5 rounded-md mb-2.5">
                 Preencha a lista abaixo com as respostas que podem ser enviadas e que você deseja tratar.
             </div>
-            <div style={{ backgroundColor: '#fff9c4', padding: '10px', borderRadius: '5px', marginBottom: '10px' }}>
+            <div className='bg-yellow-100 p-2.5 rounded-md mb-2.5'>
                 A opção "Dinâmico" está disponível apenas para as categorias "for igual a" e "possuir todas as palavras"
             </div>
-
+            <div className='flex justify-center pb-2'>
+                <Botao color="purple" onClick={handleAddResponse} label='Adicionar categoria' />
+            </div>
             {responses.map((response, index) => (
-                <div key={index} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px', borderRadius: '5px' }}>
+                <div key={index} className='border border-slate-400 p-3'>
                     <div>
                         <TextField
                             label="Categorizar resposta como"
@@ -49,12 +52,13 @@ function Respostas({ onSave, onCancel }) {
                             fullWidth
                         />
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                        <FormControl style={{ flex: 1, marginRight: '10px' }}>
+                    <div className='flex justify-items-center mt-2'>
+                        <FormControl variant="outlined" className='w-56 mr-2'>
                             <InputLabel>Dinâmico</InputLabel>
                             <Select
                                 value={response.dynamicOption}
                                 onChange={(e) => handleChange(index, 'dynamicOption', e.target.value)}
+                                label='Dinâmico'
                             >
                                 <MenuItem value="for um número maior que">for um número maior que</MenuItem>
                                 <MenuItem value="for um número igual a">for um número igual a</MenuItem>
@@ -65,7 +69,7 @@ function Respostas({ onSave, onCancel }) {
                             label="Valor"
                             value={response.value}
                             onChange={(e) => handleChange(index, 'value', e.target.value)}
-                            style={{ flex: 1, marginRight: '10px' }}
+                            className='w-20'
                         />
                         <FormControlLabel
                             control={<Checkbox
@@ -82,14 +86,12 @@ function Respostas({ onSave, onCancel }) {
                             label="E(lógico)"
                         />
                     </div>
-                    <Button color="secondary" onClick={() => handleRemoveResponse(index)}>Remover categoria</Button>
+                    <Botao color="gray" onClick={() => handleRemoveResponse(index)} label='Remover categoria' />
                 </div>
             ))}
-            
-            <Button color="primary" onClick={handleAddResponse}>Adicionar categoria</Button>
             <div style={{ marginTop: '10px' }}>
-                <Button onClick={handleSave} color="primary" variant="contained">Salvar</Button>
-                <Button onClick={onCancel} color="secondary" variant="outlined" style={{ marginLeft: '10px' }}>Cancelar</Button>
+                <Botao onClick={handleSave} color="purple" variant="contained" label='Salvar' />
+                <Botao onClick={onCancel} color="gray" variant="outlined" style={{ marginLeft: '10px' }} label='Cancelar' />
             </div>
         </div>
     );

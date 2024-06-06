@@ -1,6 +1,6 @@
-// WebServiceNode.js
 import React, { useState } from 'react';
-import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Checkbox, FormControlLabel } from '@mui/material';
+import { TextField, FormControl, InputLabel, Select, MenuItem, Checkbox, FormControlLabel } from '@mui/material';
+import Botao from '../Botão';
 
 function WebServiceNode({ onSave, onCancel }) {
     const [url, setUrl] = useState('');
@@ -72,7 +72,7 @@ function WebServiceNode({ onSave, onCancel }) {
                 onChange={(e) => setTempoEspera(Number(e.target.value))}
             />
             <div className='border rounded-md border-slate-400 p-2'>
-                <Button onClick={handleAddCabecalho} color="primary">Adicionar Cabeçalho {'(HEADERS)'}</Button>
+                <Botao onClick={handleAddCabecalho} color="purple" label={<span>Adicionar Cabeçalho (<span className='text-blue-500'>HEADERS</span>)</span>} />
                 {cabecalhos.map((header, index) => (
                     <div key={index}>
                         <TextField
@@ -83,11 +83,11 @@ function WebServiceNode({ onSave, onCancel }) {
                             value={header.key}
                             onChange={(e) => handleCabecalhoChange(index, 'key', e.target.value)}
                         />
-                        <Button onClick={() => handleRemoveCabecalho(index)} color="secondary">Remover</Button>
+                        <Botao onClick={() => handleRemoveCabecalho(index)} color="gray" label='Remover'/>
                     </div>
-                    
+
                 ))}
-                
+
             </div>
             <TextField
                 margin="dense"
@@ -123,8 +123,8 @@ function WebServiceNode({ onSave, onCancel }) {
                 label="Enviar Resposta"
             />
             <div>
-                <Button onClick={onCancel} color="secondary">Cancelar</Button>
-                <Button onClick={handleSave} color="primary">Salvar</Button>
+                <Botao onClick={onCancel} color="gray" label='Cancelar' />
+                <Botao onClick={handleSave} color="purple" label='Salvar' />
             </div>
         </>
     );

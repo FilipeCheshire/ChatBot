@@ -3,7 +3,7 @@
 import React, { useCallback, useState } from 'react';
 import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, Background } from 'reactflow';
 import 'reactflow/dist/style.css';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogActions, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import CustomNode from '../components/Node';
@@ -97,7 +97,7 @@ function Fluxo() {
       <div className='flex flex-col w-full'>
         <Header />
         <div className='bg-slate-400 h-12 flex flex-row justify-end'>
-        <Botao color='purple' label='Novo nó' onClick={adicionarNo} />
+          <Botao color='purple' label='Novo nó' onClick={adicionarNo} />
         </div>
         <div className='p-5' style={{ height: 'calc(100vh - 7rem)' }}>
           <div className='h-full border rounded-lg border-violet-950'>
@@ -117,8 +117,8 @@ function Fluxo() {
         </div>
       </div>
       <Dialog open={abrirDialogoTipo} onClose={handleFecharDialogos} maxWidth="sm" fullWidth>
-        <DialogTitle>Qual tipo do nó?</DialogTitle>
-        <DialogContent>
+        <DialogTitle className='pb-2'>Qual tipo do nó?</DialogTitle>
+        <DialogContent className='pb-2'>
           <FormControl variant="outlined" fullWidth margin="dense">
             <InputLabel id="node-type-label">Tipo do Nó</InputLabel>
             <Select
@@ -135,12 +135,12 @@ function Fluxo() {
           </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleFecharDialogos} color="secondary">Cancelar</Button>
-          <Button onClick={() => { setAbrirDialogoTipo(false); setAbrirDialogo(true); }} color="primary">Próximo</Button>
+          <Botao onClick={handleFecharDialogos} label='Cancelar' color="gray" />
+          <Botao onClick={() => { setAbrirDialogoTipo(false); setAbrirDialogo(true); }} color="purple" label='Próximo'/>
         </DialogActions>
       </Dialog>
       <Dialog open={abrirDialogo} onClose={handleFecharDialogos} maxWidth="sm" fullWidth>
-        <DialogTitle>Adicionar um Nó</DialogTitle>
+        <DialogTitle className='pb-1.5'>Adicionar um Nó</DialogTitle>
         <DialogContent>
           {tipoDeNo && (
             <>
